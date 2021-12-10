@@ -15,7 +15,7 @@ namespace NetworkTechnologies
     
     public static class BitExtensions
     {
-                #region Common
+        #region Common
 
         public static List<int> GetControlBits(int backLength, List<int> package)
         {
@@ -127,7 +127,7 @@ namespace NetworkTechnologies
 
         public static void WriteStepText(int step) => Console.WriteLine($"---Step {step} ---");
 
-        public static void WriteInLogPackages(List<List<int>> packages, bool useControlBit, int messageLenght)
+        public static void WriteInLogPackages(List<List<int>> packages, bool useControlBit = false, int messageLenght = 1)
         {
             var message = new StringBuilder();
             foreach (var package in packages)

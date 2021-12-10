@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using static NetworkTechnologies.BitExtensions;
 
 namespace NetworkTechnologies
@@ -10,6 +11,11 @@ namespace NetworkTechnologies
         {
             var defaultMessage = "Zheleznyi Aleksandr 14.02.2021";
             var message = StringToListBits(defaultMessage);
+            // _   _
+            //| \ / \
+            // * * *  * *   *  *  
+            // -----  -----  -- --------
+            // 5ю
             Console.WriteLine(BitListToMessage(Scramble(new List<int> {1,1,0,1,1,0,0,0,0,0})));
             // 1. представить первые 10 бит в трез из предложенных методов кодирования, вывести графиком в консоль
             // 2. рассчитать характеристики
@@ -19,6 +25,19 @@ namespace NetworkTechnologies
             // - - - - - - -
             // * * * * * - *
         }
+
+        private static void DrawRZ(List<int> signal)
+        {
+            var topLine = new StringBuilder();
+            topLine.Append("Strob: ")
+            foreach (var VARIABLE in COLLECTION)
+            {
+                // **   ***
+                //   *  *
+                //   ****
+            }
+        }
+        
 
         private static List<int> Scramble(List<int> message)
         {
