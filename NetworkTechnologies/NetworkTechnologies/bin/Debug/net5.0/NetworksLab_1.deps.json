@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "NetworksLab_1/1.0.0": {
+        "runtime": {
+          "NetworksLab_1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NetworksLab_1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/bin/Debug/net5.0/NetworkTechnologies.deps.json
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/bin/Debug/net5.0/NetworkTechnologies.runtimeconfig.json
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/bin/Debug/net5.0/NetworkTechnologies.runtimeconfig.dev.json
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/bin/Debug/net5.0/NetworkTechnologies.dll
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/bin/Debug/net5.0/ref/NetworkTechnologies.dll
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/bin/Debug/net5.0/NetworkTechnologies.pdb
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.csproj.AssemblyReference.cache
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.AssemblyInfoInputs.cache
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.AssemblyInfo.cs
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.csproj.CoreCompileInputs.cache
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.dll
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/ref/NetworkTechnologies.dll
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.pdb
+/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/Debug/net5.0/NetworkTechnologies.genruntimeconfig.cache
