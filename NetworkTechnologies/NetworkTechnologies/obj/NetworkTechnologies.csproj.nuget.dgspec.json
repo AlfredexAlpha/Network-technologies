@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/NetworkTechnologies.csproj": {}
+    "/Users/alex/Documents/Projects/Network-technologies/NetworkTechnologies/NetworkTechnologies/NetworkTechnologies.csproj": {}
   },
   "projects": {
-    "/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/NetworkTechnologies.csproj": {
+    "/Users/alex/Documents/Projects/Network-technologies/NetworkTechnologies/NetworkTechnologies/NetworkTechnologies.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/NetworkTechnologies.csproj",
+        "projectUniqueName": "/Users/alex/Documents/Projects/Network-technologies/NetworkTechnologies/NetworkTechnologies/NetworkTechnologies.csproj",
         "projectName": "NetworkTechnologies",
-        "projectPath": "/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/NetworkTechnologies.csproj",
+        "projectPath": "/Users/alex/Documents/Projects/Network-technologies/NetworkTechnologies/NetworkTechnologies/NetworkTechnologies.csproj",
         "packagesPath": "/Users/alex/.nuget/packages/",
-        "outputPath": "/Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/obj/",
+        "outputPath": "/Users/alex/Documents/Projects/Network-technologies/NetworkTechnologies/NetworkTechnologies/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/alex/.nuget/NuGet/NuGet.Config"

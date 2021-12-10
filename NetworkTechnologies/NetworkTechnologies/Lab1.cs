@@ -46,79 +46,21 @@ namespace NetworkTechnologies
             // запустить симмуляцию с помощью хемминга
             // запустить симуляцию с помощью берна
 
-            // var test = new List<int>() { 0,1,0,0,0,1,0,0,0,0,1,1,1,1,0,1 };
-            var test = new List<int> { 0,1,0,0,0,1,0,0 };
+            var test = new List<int>() { 0,1,0,0,0,1,0,0,0,0,1,1,1,1,0,1 };
+            // var test = new List<int> { 0,1,0,0,0,1,0,0 };
             // var test = new List<int> { 0,1,0,0 };
-            var result = GetHammingControlBits(test.ToList()).ToList();
-            Console.WriteLine($"Debug log: {test.Count}, Result: {result.Count}");
-            Console.WriteLine(BitListToMessage(result));
+            var encodeBits = GetHammingControlBits(test.ToList()).ToList();
+            Console.WriteLine($"Debug log: {test.Count}, Result: {encodeBits.Count}");
+            Console.WriteLine(BitListToMessage(encodeBits));
+            
+            Console.WriteLine($"Test Hamming decode");
+            var errorMess = new List<int> {1,0,0,1,1,0,0,0,1,1,0,0,0,0,1,0,1,1,1,0,1};
+            var decodeResult = DecodeHammingControlBits(errorMess.ToList());
+            Console.WriteLine(BitListToMessage(decodeResult));
+            Console.WriteLine(errorMess.Count);
         }
-        
-        private static List<int> AddBergerControlBit(List<int> package)
-        {
-            var result = new List<int>();
-            /*            
-            result.Add((package[0] + package[1]) % 2 == 0 ? 1 : 0);
-            result.Add((package[0] + package[1] + package[2] + package[3]) % 2 == 0 ? 0 : 1);
-            result.Add(package[0]);
-            result.Add(package[1]);
-            result.Add((package[1] + package[2] + package[3]) % 2 == 1 ? 1 : 0);
-            result.Add(package[2]);
-            result.Add(package[3]);
 
-            if (package.Count == 8)
-            {
-                result.Add((package[4] + package[5]+ package[6]+ package[7]) % 2 == 0 ? 0 : 1);
-                result.Add(package[4]);
-                result.Add(package[5]);
-                result.Add(package[6]);
-                result.Add(package[7]);
-            }
-
-            if (package.Count == 16)
-            {
-                result.Add((package[11] + package[12] + package[13] + package[15]) % 2 == 0 ? 0 : 1);
-                result.Add(package[11]);
-                result.Add(package[12]);
-                result.Add(package[13]);
-                result.Add(package[14]);
-                result.Add(package[15]);
-            }
-
-            return result;
-            */ 
-
-            // 1, 2, 4, 8, 16
-            // var controlBits = new List<int>();
-            // for (var i = 1; i < package.Count; i += i)
-            // {
-            //     var bit = 0;
-            //     for (var j = 0; j < i; j++)
-            //         bit ^= package[i - 1 + j];
-            //     controlBits.Add(bit);
-            // }
-            //
-            // var result = new List<int>();
-            // for (var i = 0; i < package.Count; i += i)
-            // {
-            //     
-            // }
-            var controlBitIndex = 1;
-            for (var i = 1; i < package.Count; i += i)
-            {
-                Console.WriteLine(i.ToString());
-                var localCounter = 0;
-                for (var j = 0; j < package.Count; j++)
-                {
-                                        
-                }
-                
-                while (localCounter < i)
-                    result.Add(package[i]);
-            }
-
-            return result;
-        }
+        #region MyRegion
 
         private static void SimulateSendMessage(int packageBitCount, List<int> message)
         {
@@ -144,6 +86,9 @@ namespace NetworkTechnologies
         {
             return package.Aggregate(0, (current, bit) => current ^ bit);
         }
+
+
+        #endregion
         
         #region Hamming
 
@@ -162,34 +107,64 @@ namespace NetworkTechnologies
             Console.WriteLine("Accepted packages:");
             WriteInLogPackages(resultPackages, true, packageBitCount);
 
+            // TODO add decode hamming code
+            
             var tryCount = startPackages.Where((t, i) => EqualBitsMessages(GetControlBits(packageBitCount, t), 
                 GetControlBits(packageBitCount, resultPackages[i]))).Count();
             var percent = (int)(((float)tryCount / resultPackages.Count) * 100);
             Console.WriteLine($"Percentage of correctly transmitted: {percent}%");
         }
 
-        private static int[] DecodeHammingControlBits(List<int> package)
+        private static List<int> DecodeHammingControlBits(List<int> package)
         {
-            throw new Exception();
+            // remove control bits
+            var withoutControlBits = package.ToList();
+            var powIds = new List<int>();
+            for(var i = 0 ; i < 32; i++)
+                if ((int) Math.Pow(2, i) <= package.Count)
+                    powIds.Add((int) Math.Pow(2, i) - 1);
+                else break;
+            
+            for(var i = powIds.Count - 1; i >= 0; i--)
+                withoutControlBits.RemoveAt(powIds[i]);
+            // withoutControlBits.Remove(0);
+            Console.WriteLine(BitListToMessage(withoutControlBits.ToList()));
+
+            
+            // calculate new control bits
+            var errorIndexes = new List<int>();
+            var packageWithControlBits = GetHammingControlBits(withoutControlBits);
+            // Console.WriteLine(BitListToMessage(packageWithControlBits.ToList()));
+
+            for (var i = 0; i < powIds.Count; i++)
+            {
+                var index = (int) Math.Pow(2, i) - 1;
+                if(packageWithControlBits[index] != package[index])
+                    errorIndexes.Add(index + 1);
+            }
+            // Console.WriteLine(BitListToMessage(errorIndexes.ToList()));
+
+            var errorIndex = errorIndexes.Sum();
+            // Console.WriteLine($"Line with error: {errorIndex}");
+            if (errorIndex != 0)
+                package[errorIndex] = package[errorIndex] == 1 ? 0 : 1;
+            return package;
         }
         
         private static int[] GetHammingControlBits(List<int> package)
         {
             var result = new List<int>();
             var resultBitsCount = 7;
-            resultBitsCount = package.Count > 8 ? 21 : 12;
-            for (var i = 0; i < resultBitsCount; i++)
-                result.Add(-1);
+            if(package.Count > 4) resultBitsCount = package.Count > 8 ? 21 : 12;
+            for (var i = 0; i < resultBitsCount; i++) result.Add(-1);
 
             var controlBitIds = new List<int>();
-            var powCount = resultBitsCount > 12 ? 4 : 3;
-            powCount = resultBitsCount > 16 ? 5 : powCount;
+            var powCount = 0;
+            for(var i = 0 ; i < 32; i++) 
+                if ((int) Math.Pow(2, i) <= package.Count) powCount++;
+                else break;
             for (var i = 0; i < powCount; i++)
-            {
                 controlBitIds.Add((int)Math.Pow(2, i) - 1);
-                // result[index] = GetHammingControlBit(index, result.ToList());
-                // controllBits.Add(index, GetHammingControlBit(index, result.ToList()));
-            }
 
             while (package.Count > 0)
             {
@@ -197,6 +172,7 @@ namespace NetworkTechnologies
                 if (controlBitIds.Contains(emptyIndex))
                 {
                     result[emptyIndex] = 0;
+                    continue;
                 }
 
                 result[emptyIndex] = package[0];
@@ -232,7 +208,7 @@ namespace NetworkTechnologies
                     i += nextCount + 2 + nextCount;
             }
 
-            //Console.WriteLine($"Result: {newItems.Aggregate(0, (current, i) => current ^ i)}");
+            // Console.WriteLine($"Result: {newItems.Aggregate(0, (current, i) => current ^ i)}");
             return newItems.Aggregate(0, (current, i) => current ^ i);
         }
 
@@ -242,19 +218,20 @@ namespace NetworkTechnologies
 
         private static void SimulateSendMessageWithBerger(int packageBitCount, List<int> message)
         {
-            
+            //TODO add berger simulation
+            throw new Exception("TODO add berger");
         }
 
         private static int[] GetBergerControlBit(List<int> package)
         {
-            // 1. считаем кол-во едениц переводим в двоичное представление
-            // 2. ивертируем число и добавляем его к исзодному слову
             var result = IntToBinaryCode(package.Sum());
             InvertBits(ref result);
             return result.ToArray();
         }
 
         #endregion
+
+        #region Common
 
         private static void CalculateControlBitForPackages(ref List<List<int>> packages, ControlBitsType bitsType = ControlBitsType.Summ)
         {
@@ -274,5 +251,7 @@ namespace NetworkTechnologies
                 }
             }
         }
+
+        #endregion
     }
 }

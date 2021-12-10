@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = NetworksLab_1
-build_property.ProjectDir = /Users/alex/RiderProjects/NetworksLabs/NetworksLab_1/NetworkTechnologies/
+build_property.ProjectDir = /Users/alex/Documents/Projects/Network-technologies/NetworkTechnologies/NetworkTechnologies/
